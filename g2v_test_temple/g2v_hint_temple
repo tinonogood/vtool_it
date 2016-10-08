@@ -1,0 +1,5 @@
+No intput file
+Usage: g2v -i xxx.gjf [-o POSCAR]
+ -h : help
+ -i : input file, ie xxx.gjf, xxx.com
+ -o : output file, ie POSCAR

@@ -1,73 +1,55 @@
 *** Settings ***
 Library     OperatingSystem
 Library     diff
-Resource    common_keyword/v2g_keyword.robot
-Suite Setup  Directory Should Exist  v2g_test_temple  
+Resource    common_keyword/g2v_keyword.robot
+Suite Setup  Directory Should Exist  g2v_test_temple  
 
 
 *** Variables ***
-${files_dir}=  v2g_test_temple
-${poscar}=  ${files_dir}/13xH2O_CONT
-${gjf}=  13xH2O_CONT_py3.gjf
-${gjf_temple}=  ${files_dir}/13xH2O_CONT_temple.gjf
-${gjf_ABC_temple}=  ${files_dir}/13xH2O_CONT_ABC_temple.gjf
-${gjf_diff_result}=   v2g_diff
-${helper_temple}=  ${files_dir}/v2g_helper_temple
-${hint_temple}=  ${files_dir}/v2g_hint_temple
+${files_dir}=  g2v_test_temple
+${gjf}=  ${files_dir}/13xH2O_CONT.gjf
+${poscar}=  13xH2O_CONT_py3
+${poscar_temple}=  ${files_dir}/POSCAR_temple
+${poscar_diff_result}=   g2v_diff
+${helper_temple}=  ${files_dir}/g2v_helper_temple
+${hint_temple}=  ${files_dir}/g2v_hint_temple
 
 
 *** Keywords ***
 
-Generate gjf From POSCAR
-    Run v2g  ${poscar}  ${gjf}
+Generate POSCAR From gjf
+    Run g2v  ${gjf}  ${poscar}  
     
-Generate gjf From POSCAR With Elements Tag
-    Run v2g  ${poscar}  ${gjf}  A,B,C
-    
-Check gjf
-    diff_context  ${gjf}  ${gjf_temple}  ${gjf_diff_result}
-    ${rc}  ${result}=  Run and Return RC and Output  cat ${gjf_diff_result}
+Check POSCAR
+    diff_context  ${poscar}  ${poscar_temple}  ${poscar_diff_result}
+    ${rc}  ${result}=  Run and Return RC and Output  cat ${poscar_diff_result}
     Should Be Empty  ${result}
-    
-Check gjf With Elements Tag
-    diff_context  ${gjf}  ${gjf_ABC_temple}  ${gjf_diff_result}
-    ${rc}  ${result}=  Run and Return RC and Output  cat ${gjf_diff_result}
-    Should Be Empty  ${result}
-    
-Generate v2g Helper  
-    Run v2g 
 
-Check v2g Helper
-    ${rc}  ${result}=  Run and Return RC and Output  v2g -h
+Check g2v Helper
+    ${rc}  ${result}=  Run and Return RC and Output  g2v -h
     ${rc}  ${result1}=  Run and Return RC and Output  cat ${helper_temple}
     Should Be Equal  ${result}  ${result1}
 
-Check v2g Hint
-    ${rc}  ${result}=  Run and Return RC and Output  v2g
-    ${rc}  ${result1}=  Run and Return RC and Output  cat ${helper_temple}
+Check g2v Hint
+    ${rc}  ${result}=  Run and Return RC and Output  g2v
+    ${rc}  ${result1}=  Run and Return RC and Output  cat ${hint_temple}
     Should Be Equal  ${result}  ${result1}
 
 
 
 *** Test Cases ***
-Convert POSCAR To gjf
-    Test Setup POSCAR To gjf
-    Generate gjf From POSCAR
-    Check gjf
+Convert gjf To POSCAR
+    Test Setup gjf To POSCAR
+    Generate POSCAR From gjf
+    Check POSCAR
     Test Teardown  
 
-Convert POSCAR To gjf With Elements Tag
-    Test Setup POSCAR To gjf With Element Tag
-    Generate gjf From POSCAR With Elements Tag
-    Check gjf With Elements Tag
-    Test Teardown
+Check g2v Helper
+    Test Setup gjf To POSCAR helper
+    Run g2v helper
+    Check g2v Helper
 
-Check v2g Helper
-    Test Setup POSCAR To gjf helper
-    Run v2g helper
-    Check v2g Helper
-
-Check v2g Hint
-    Test Setup POSCAR To gjf hint
-    Run v2g hint
-    Check v2g Hint
+Check g2v Hint
+    Test Setup gjf To POSCAR hint
+    Run g2v hint
+    Check g2v Hint
