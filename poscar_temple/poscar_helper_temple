@@ -1,0 +1,5 @@
+Usage: poscar -i CONTCAR [-o POSCAR]
+ -h : help
+ -i : input file, ie CONTCAR, POSCAR (Automatically detect Cartesian or Direct)
+ -o : output file, ie POSCAR
+ These should be overridden if your input and output file name are the same.

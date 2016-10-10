@@ -33,7 +33,17 @@ Check gjf With Elements Tag
     diff_context  ${gjf}  ${gjf_ABC_temple}  ${gjf_diff_result}
     ${rc}  ${result}=  Run and Return RC and Output  cat ${gjf_diff_result}
     Should Be Empty  ${result}
-    
+
+Check gjf Without Output File
+    ${rc}  ${result}=  Run and Return RC and Output  v2g -i ${poscar}
+    ${rc}  ${result1}=  Run and Return RC and Output  cat ${gjf_temple}
+    Should Be Equal  ${result}  ${result1}
+
+Check gjf With Elements Tag Without Output File
+    ${rc}  ${result}=  Run and Return RC and Output  v2g -i ${poscar} A,B,C
+    ${rc}  ${result1}=  Run and Return RC and Output  cat ${gjf_ABC_temple}
+    Should Be Equal  ${result}  ${result1}
+
 Generate v2g Helper  
     Run v2g 
 
@@ -54,12 +64,14 @@ Convert POSCAR To gjf
     Test Setup POSCAR To gjf
     Generate gjf From POSCAR
     Check gjf
+#    Check gjf Without Output File
     Test Teardown  
 
 Convert POSCAR To gjf With Elements Tag
     Test Setup POSCAR To gjf With Element Tag
     Generate gjf From POSCAR With Elements Tag
     Check gjf With Elements Tag
+#    Check gjf With Elements Tag Without Output File
     Test Teardown
 
 Check v2g Helper
