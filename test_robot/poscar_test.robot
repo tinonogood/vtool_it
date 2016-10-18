@@ -1,12 +1,12 @@
 *** Settings ***
 Library     OperatingSystem
-Library     ../util/diff.py
-Resource    ../common_keyword/poscar_keyword.robot
+Library     ./util/diff.py
+Resource    ./common_keyword/poscar_keyword.robot
 Suite Setup  Directory Should Exist  ${files_dir}
 
   
 *** Variables ***
-${files_dir}=  ../pattern/poscar_temple
+${files_dir}=  ./pattern/poscar_temple
 ${contcar_C}=  ${files_dir}/13xH2O_CONT_C
 ${contcar_D}=  ${files_dir}/13xH2O_CONT_D
 ${poscar}=  poscar

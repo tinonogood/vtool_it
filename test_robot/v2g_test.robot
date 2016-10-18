@@ -1,12 +1,12 @@
 *** Settings ***
 Library     OperatingSystem
-Library     ../util/diff.py
-Resource    ../common_keyword/v2g_keyword.robot
-Suite Setup  Directory Should Exist  ../pattern/v2g_test_temple  
+Library     ./util/diff.py
+Resource    ./common_keyword/v2g_keyword.robot
+Suite Setup  Directory Should Exist  ${files_dir}
 
 
 *** Variables ***
-${files_dir}=  ../pattern/v2g_test_temple
+${files_dir}=  ./pattern/v2g_test_temple
 ${poscar}=  ${files_dir}/13xH2O_CONT
 ${gjf}=  13xH2O_CONT_py3.gjf
 ${gjf_temple}=  ${files_dir}/13xH2O_CONT_temple.gjf
