@@ -54,18 +54,18 @@ Convert CONTCAR_C To POSCAR
     Check POSCAR_D
     Test Teardown  
 
-Convert CONTCAR_D To POSCAR
-    Test Setup D2C
-    Generate POSCAR From CONTCAR_D
-    Check POSCAR_C
-    Test Teardown 
- 
-Check poscar Helper
-    Test Setup poscar helper
-    Run poscar helper
-    Check poscar Helper
-
-Check poscar Hint
-    Test Setup poscar hint
-    Run poscar hint
-    Check poscar Hint
+#Convert CONTCAR_D To POSCAR
+#    Test Setup D2C
+#    Generate POSCAR From CONTCAR_D
+#    Check POSCAR_C
+#    Test Teardown 
+# 
+#Check poscar Helper
+#    Test Setup poscar helper
+#    Run poscar helpe
+#    Check poscar Helper
+#
+#Check poscar Hint
+#    Test Setup poscar hint
+#    Run poscar hint
+#    Check poscar Hint

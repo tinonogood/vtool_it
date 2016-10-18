@@ -54,7 +54,7 @@ Check v2g Helper
 
 Check v2g Hint
     ${rc}  ${result}=  Run and Return RC and Output  v2g
-    ${rc}  ${result1}=  Run and Return RC and Output  cat ${helper_temple}
+    ${rc}  ${result1}=  Run and Return RC and Output  cat ${hint_temple}
     Should Be Equal  ${result}  ${result1}
 
 
@@ -64,14 +64,12 @@ Convert POSCAR To gjf
     Test Setup POSCAR To gjf
     Generate gjf From POSCAR
     Check gjf
-#    Check gjf Without Output File
     Test Teardown  
 
 Convert POSCAR To gjf With Elements Tag
     Test Setup POSCAR To gjf With Element Tag
     Generate gjf From POSCAR With Elements Tag
     Check gjf With Elements Tag
-#    Check gjf With Elements Tag Without Output File
     Test Teardown
 
 Check v2g Helper
