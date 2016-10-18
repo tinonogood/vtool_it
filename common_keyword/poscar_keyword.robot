@@ -28,6 +28,3 @@ Run poscar hint
     ${rc}  ${result}=  Run and Return RC and Output  poscar
     Should Be Equal  ${1}  ${rc}
 
-Test Teardown
-    Remove Files  ${poscar}  ${poscar_diff_result}
-

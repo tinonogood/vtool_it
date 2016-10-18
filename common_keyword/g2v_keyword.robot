@@ -1,13 +1,4 @@
 *** Keywords ***
-Test Setup gjf To POSCAR
-    File Should Exist  ${POSCAR_temple}
-
-Test Setup gjf To POSCAR helper
-    File Should Exist  ${helper_temple}
-
-Test Setup gjf To POSCAR hint
-    File Should Exist  ${hint_temple}
-
 Run g2v
     [Arguments]  ${input}=${None}  ${output}=${None}  ${element_tag}=${None}
     ${cmd}=  Set Variable If
@@ -25,7 +16,4 @@ Run g2v helper
 Run g2v hint
     ${rc}  ${result}=  Run and Return RC and Output  g2v
     Should Be Equal  ${1}  ${rc}
-
-Test Teardown
-    Remove Files  ${poscar}  ${poscar_diff_result}
 

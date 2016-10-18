@@ -1,12 +1,12 @@
 *** Settings ***
 Library     OperatingSystem
-Library     diff
-Resource    common_keyword/g2v_keyword.robot
-Suite Setup  Directory Should Exist  g2v_test_temple  
+Library     ../util/diff.py
+Resource    ../common_keyword/g2v_keyword.robot
+Suite Setup  Directory Should Exist  ../pattern/g2v_test_temple  
 
 
 *** Variables ***
-${files_dir}=  g2v_test_temple
+${files_dir}=  ../pattern/g2v_test_temple
 ${gjf}=  ${files_dir}/13xH2O_CONT.gjf
 ${poscar}=  13xH2O_CONT_py3
 ${poscar_temple}=  ${files_dir}/POSCAR_temple
@@ -39,17 +39,17 @@ Check g2v Hint
 
 *** Test Cases ***
 Convert gjf To POSCAR
-    Test Setup gjf To POSCAR
+    [Setup]  File Should Exist  ${POSCAR_temple}
     Generate POSCAR From gjf
     Check POSCAR
-    Test Teardown  
+    [Teardown]  Remove Files  ${poscar}  ${poscar_diff_result}   
 
 Check g2v Helper
-    Test Setup gjf To POSCAR helper
+    [Setup]  File Should Exist  ${helper_temple}
     Run g2v helper
     Check g2v Helper
 
 Check g2v Hint
-    Test Setup gjf To POSCAR hint
+    [Setup]  File Should Exist  ${hint_temple}
     Run g2v hint
     Check g2v Hint

@@ -1,0 +1,7 @@
+Usage:
+  poscar -i <CONTCAR> [-o <POSCAR>]
+
+Options:
+  -h, --help                      help
+  -i, --in_file <xxx.gjf>         input file, ie CONTCAR, POSCAR (Automatically detect Cartesian or Direct)
+  -o, --out_file <POSCAR>         output file, ie POSCAR

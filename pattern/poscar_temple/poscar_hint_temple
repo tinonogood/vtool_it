@@ -1,0 +1,2 @@
+Usage:
+  poscar -i <CONTCAR> [-o <POSCAR>]

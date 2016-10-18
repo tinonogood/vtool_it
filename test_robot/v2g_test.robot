@@ -1,12 +1,12 @@
 *** Settings ***
 Library     OperatingSystem
-Library     diff
-Resource    common_keyword/v2g_keyword.robot
-Suite Setup  Directory Should Exist  v2g_test_temple  
+Library     ../util/diff.py
+Resource    ../common_keyword/v2g_keyword.robot
+Suite Setup  Directory Should Exist  ../pattern/v2g_test_temple  
 
 
 *** Variables ***
-${files_dir}=  v2g_test_temple
+${files_dir}=  ../pattern/v2g_test_temple
 ${poscar}=  ${files_dir}/13xH2O_CONT
 ${gjf}=  13xH2O_CONT_py3.gjf
 ${gjf_temple}=  ${files_dir}/13xH2O_CONT_temple.gjf
@@ -61,23 +61,23 @@ Check v2g Hint
 
 *** Test Cases ***
 Convert POSCAR To gjf
-    Test Setup POSCAR To gjf
+    [Setup]  File Should Exist  ${gjf_temple}
     Generate gjf From POSCAR
     Check gjf
-    Test Teardown  
+    [Teardown]  Remove Files  ${gjf}  ${gjf_diff_result}
 
 Convert POSCAR To gjf With Elements Tag
-    Test Setup POSCAR To gjf With Element Tag
+    [Setup]  File Should Exist  ${gjf_ABC_temple}
     Generate gjf From POSCAR With Elements Tag
     Check gjf With Elements Tag
-    Test Teardown
+    [Teardown]  Remove Files  ${gjf}  ${gjf_diff_result}
 
 Check v2g Helper
-    Test Setup POSCAR To gjf helper
+    [Setup]  File Should Exist  ${helper_temple}
     Run v2g helper
     Check v2g Helper
 
 Check v2g Hint
-    Test Setup POSCAR To gjf hint
+    [Setup]  File Should Exist  ${hint_temple}
     Run v2g hint
     Check v2g Hint
